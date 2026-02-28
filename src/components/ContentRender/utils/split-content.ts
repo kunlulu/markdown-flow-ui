@@ -15,6 +15,7 @@ const INLINE_SANDBOX_PATTERNS: RegExp[] = [
 const MARKDOWN_IMAGE_PATTERN = /!\[[^\]]*]\([^\s)\n]+(?:\s+"[^"]*")?\)/i;
 const MARKDOWN_VIDEO_IFRAME_PATTERN =
   /<iframe\b[^>]*\bdata-tag\s*=\s*(["'])video\1[^>]*>[\s\S]*?<\/iframe>/i;
+const DIFF_BLOCK_START_PATTERN = /!\+\+\+/i;
 
 const closingBoundary = /<\/[a-z][^>]*>\s*\n(?=[^\s<])/gi;
 const CUSTOM_BUTTON_PATTERN =
@@ -235,6 +236,22 @@ const findMarkdownVideoIframeMatch = (
   return { start, end: start + match[0].length };
 };
 
+const findDiffSandboxMatch = (
+  raw: string,
+  fenceRanges: FenceRange[]
+): MatchResult | null => {
+  const start = findFirstMatchOutsideFence(
+    raw,
+    DIFF_BLOCK_START_PATTERN,
+    fenceRanges
+  );
+  if (start === -1) return null;
+
+  const closeIndex = raw.indexOf("!+++", start + 4);
+  const end = closeIndex === -1 ? raw.length : closeIndex + 4;
+  return { start, end };
+};
+
 const isMarkdownVideoIframe = (value: string) =>
   MARKDOWN_VIDEO_IFRAME_PATTERN.test(value.trim());
 
@@ -377,13 +394,14 @@ export const splitContentSegments = (
     source,
     fenceRanges
   );
+  const diffSandboxMatch = findDiffSandboxMatch(source, fenceRanges);
   const inlineCandidate = pickEarliestMatch(
     inlineMatch,
     markdownImageMatch,
     markdownVideoIframeMatch
   );
 
-  if (sandboxStartIndex === -1 && !inlineCandidate) {
+  if (sandboxStartIndex === -1 && !inlineCandidate && !diffSandboxMatch) {
     if (keepText && source.trim()) {
       return finalizeSegments([{ type: "text", value: source }]);
     }
@@ -394,12 +412,21 @@ export const splitContentSegments = (
     !!inlineCandidate &&
     (sandboxStartIndex === -1 || inlineCandidate.start <= sandboxStartIndex);
 
-  const startIndex = shouldUseInline
-    ? inlineCandidate!.start
-    : sandboxStartIndex;
-  const blockEnd = shouldUseInline
-    ? inlineCandidate!.end
-    : findHtmlBlockEnd(source, startIndex);
+  const shouldUseDiffSandbox =
+    !!diffSandboxMatch &&
+    (sandboxStartIndex === -1 || diffSandboxMatch.start <= sandboxStartIndex) &&
+    (!inlineCandidate || diffSandboxMatch.start <= inlineCandidate.start);
+
+  const startIndex = shouldUseDiffSandbox
+    ? diffSandboxMatch.start
+    : shouldUseInline
+      ? inlineCandidate!.start
+      : sandboxStartIndex;
+  const blockEnd = shouldUseDiffSandbox
+    ? diffSandboxMatch.end
+    : shouldUseInline
+      ? inlineCandidate!.end
+      : findHtmlBlockEnd(source, startIndex);
 
   const segments: RenderSegment[] = [];
   const before = source.slice(0, startIndex);

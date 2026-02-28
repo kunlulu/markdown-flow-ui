@@ -409,6 +409,23 @@ kk，通过这次旅程，我们一起揭开了春节神秘而温暖的面纱。
     expect(segments[2].type).toBe("text");
   });
 
+  it("treats diff blocks as sandbox segments", () => {
+    const raw = `!+++
+--- a/0
++++ b/0
+@@ -1,1 +1,1 @@
+-<div>A</div>
++<div>B</div>
+!+++`;
+
+    const segments = splitContentSegments(raw, true);
+
+    expect(segments).toHaveLength(1);
+    expect(segments[0].type).toBe("sandbox");
+    expect(segments[0].value).toContain("--- a/0");
+    expect(segments[0].value).toContain("+++ b/0");
+  });
+
   it("splits leading text, svg, and trailing text when keepText is true", () => {
     const raw = `你好，我是孙志岗，初次见面，很高兴认识你。
 

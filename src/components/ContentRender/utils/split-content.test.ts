@@ -73,4 +73,21 @@ describe("splitContentSegments", () => {
     expect(segments[1].value).toContain("data-tag='video'");
     expect(segments[2].type).toBe("text");
   });
+
+  it("treats diff blocks as sandbox segments", () => {
+    const raw = `!+++
+--- a/0
++++ b/0
+@@ -1,1 +1,1 @@
+-<div>A</div>
++<div>B</div>
+!+++`;
+
+    const segments = splitContentSegments(raw, true);
+
+    expect(segments).toHaveLength(1);
+    expect(segments[0].type).toBe("sandbox");
+    expect(segments[0].value).toContain("--- a/0");
+    expect(segments[0].value).toContain("+++ b/0");
+  });
 });

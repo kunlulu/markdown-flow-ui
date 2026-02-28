@@ -18,6 +18,23 @@ export interface IframeSandboxProps {
   type: "sandbox" | "markdown";
 }
 
+const DIFF_BLOCK_GLOBAL_PATTERN = /!\+\+\+[\s\S]*?!\+\+\+/g;
+
+const isPureDiffPayload = (raw: string) => {
+  const normalized = raw.trim();
+  if (!normalized) {
+    return false;
+  }
+
+  const matchedBlocks = normalized.match(DIFF_BLOCK_GLOBAL_PATTERN);
+  if (!matchedBlocks?.length) {
+    return false;
+  }
+
+  const rest = normalized.replace(DIFF_BLOCK_GLOBAL_PATTERN, "").trim();
+  return rest.length === 0;
+};
+
 const IframeSandbox: React.FC<IframeSandboxProps> = ({
   content,
   type,
@@ -39,6 +56,10 @@ const IframeSandbox: React.FC<IframeSandboxProps> = ({
   const [isFullscreen, setIsFullscreen] = useState(false);
   const prevHtmlRef = useRef<string>("");
   const htmlContent = React.useMemo(() => {
+    if (mode === "blackboard" && type === "sandbox") {
+      return content || "";
+    }
+
     const segments = splitContentSegments(content);
     // console.log('segments=====', segments);
     const sandboxSegments = segments.filter((seg) => seg.type === "sandbox");
@@ -47,7 +68,7 @@ const IframeSandbox: React.FC<IframeSandboxProps> = ({
         ? sandboxSegments[sandboxSegments.length - 1]?.value || ""
         : sandboxSegments.map((seg) => seg.value).join("\n");
     return sandboxContent || "";
-  }, [content, mode]);
+  }, [content, mode, type]);
   const hasRootVhHeight = React.useMemo(() => {
     const normalized = htmlContent.trim();
     if (!normalized) return false;
@@ -63,17 +84,18 @@ const IframeSandbox: React.FC<IframeSandboxProps> = ({
     return /height\s*:\s*[^;]*vh\b/i.test(styleAttrMatch[1]);
   }, [htmlContent]);
   useEffect(() => {
-    if (mode !== "blackboard") {
+    if (mode !== "blackboard" || type !== "sandbox") {
       prevHtmlRef.current = htmlContent;
       return;
     }
     const prev = prevHtmlRef.current;
     const isContinuation = prev && htmlContent.startsWith(prev);
-    if (!isContinuation && prev) {
+    const shouldKeepState = isPureDiffPayload(htmlContent);
+    if (!isContinuation && prev && !shouldKeepState) {
       setResetToken((token) => token + 1);
     }
     prevHtmlRef.current = htmlContent;
-  }, [htmlContent, mode]);
+  }, [htmlContent, mode, type]);
 
   useEffect(() => {
     const iframe = iframeRef.current;

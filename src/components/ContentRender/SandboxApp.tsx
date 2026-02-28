@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import { Loader2 } from "lucide-react";
+import { BlackboardRuntime } from "./blackboard/blackboard-runtime";
 
 export interface SandboxAppProps {
   html: string;
@@ -33,6 +34,7 @@ const SandboxApp: React.FC<SandboxAppProps> = ({
   const hasScriptsRef = useRef(false);
   const hasRenderedContentRef = useRef(false);
   const prevResetTokenRef = useRef(resetToken);
+  const runtimeRef = useRef<BlackboardRuntime | null>(null);
   const MIN_LOADING_MS = 200;
 
   const clearTimer = (timerRef: React.MutableRefObject<number | null>) => {
@@ -77,22 +79,49 @@ const SandboxApp: React.FC<SandboxAppProps> = ({
       @media (max-width: 640px) {
         .sandbox-wrapper { align-items: stretch; }
         .sandbox-wrapper[data-root-vh="true"] .sandbox-container > :first-child { height: auto !important; }
+        .sandbox-wrapper[data-root-vh="true"] .sandbox-container > #ppt-container > :first-child { height: auto !important; }
       }
     `;
   }, []);
 
   useEffect(() => {
+    const container = containerRef.current;
+    if (!container) return;
+
     if (resetToken !== prevResetTokenRef.current) {
       hasRenderedContentRef.current = false;
       prevResetTokenRef.current = resetToken;
+      runtimeRef.current?.reset();
     }
     clearTimer(styleTimerRef);
     clearTimer(scriptTimerRef);
     hasStylesRef.current = false;
     hasScriptsRef.current = false;
+    setIsGeneratingStyles(false);
+    setIsGeneratingScripts(false);
 
-    const container = containerRef.current;
-    if (!container) return;
+    if (mode === "blackboard") {
+      appendedStylesRef.current.forEach((node) => node.remove());
+      appendedStylesRef.current = [];
+      appendedScriptsRef.current.forEach((node) => node.remove());
+      appendedScriptsRef.current = [];
+
+      if (!runtimeRef.current) {
+        runtimeRef.current = new BlackboardRuntime(container);
+      }
+
+      runtimeRef.current.update(html);
+      const hasRendered = runtimeRef.current.hasRenderedContent();
+      hasRenderedContentRef.current = hasRendered;
+      setIsWaitingFirstDiv(!hasRendered);
+      return;
+    }
+
+    if (runtimeRef.current) {
+      runtimeRef.current.reset();
+      runtimeRef.current = null;
+    }
+
     const doc = container.ownerDocument;
     const body = doc?.body;
     if (!body) return;
@@ -104,8 +133,6 @@ const SandboxApp: React.FC<SandboxAppProps> = ({
 
     const hasRenderedBefore = hasRenderedContentRef.current;
     setIsWaitingFirstDiv(!hasRenderedBefore);
-    setIsGeneratingStyles(false);
-    setIsGeneratingScripts(false);
     container.innerHTML = "";
     const wrapper = document.createElement("div");
     wrapper.innerHTML = html;
@@ -220,12 +247,13 @@ const SandboxApp: React.FC<SandboxAppProps> = ({
         );
       }
     });
-  }, [html, resetToken]);
+  }, [html, mode, resetToken]);
 
   useEffect(
     () => () => {
       clearTimer(styleTimerRef);
       clearTimer(scriptTimerRef);
+      runtimeRef.current = null;
     },
     []
   );
@@ -248,7 +276,7 @@ const SandboxApp: React.FC<SandboxAppProps> = ({
       style={{
         position: "relative",
         width: "100%",
-        height: isBlackboard ? "100vh" : undefined,
+        height: isBlackboard ? "100dvh" : undefined,
         display: "flex",
         flexDirection: "column",
         // if use center, too long iframe wont see header

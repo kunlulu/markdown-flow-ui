@@ -24,6 +24,7 @@
     "@uiw/react-codemirror": "^4.24.1",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
+    "diff": "^5.2.0",
     "github-markdown-css": "^5.8.1",
     "highlight.js": "^11.11.1",
     "i18next": "^23.15.1",
@@ -156,7 +157,7 @@
     "storybook": "storybook dev -p 6006",
     "test": "echo \"No tests specified\" && exit 0"
   },
-  "version": "0.1.93",
+  "version": "0.1.93-beta.0",
   "type": "module",
   "exports": {
     ".": {

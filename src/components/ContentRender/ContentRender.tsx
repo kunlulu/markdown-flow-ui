@@ -235,17 +235,33 @@ export const MarkdownRenderer: React.FC<{
   </div>
 );
 
-const mergeNonSandboxSegments = (segments: RenderSegment[]) => {
+const mergeNonSandboxSegments = (
+  segments: RenderSegment[],
+  mergeSandboxSegments = false
+) => {
   if (segments.length <= 1) return segments;
   const merged: RenderSegment[] = [];
 
   segments.forEach((segment) => {
+    const last = merged[merged.length - 1];
+
+    if (
+      mergeSandboxSegments &&
+      segment.type === "sandbox" &&
+      last?.type === "sandbox"
+    ) {
+      merged[merged.length - 1] = {
+        type: "sandbox",
+        value: `${last.value}${segment.value}`,
+      };
+      return;
+    }
+
     if (segment.type === "sandbox") {
       merged.push(segment);
       return;
     }
 
-    const last = merged[merged.length - 1];
     if (last && last.type !== "sandbox") {
       merged[merged.length - 1] = {
         type: "markdown",
@@ -403,8 +419,8 @@ const ContentRender: React.FC<ContentRenderProps> = ({
     (segment) => segment.type === "sandbox"
   );
   const mergedRenderSegments = useMemo(
-    () => mergeNonSandboxSegments(renderSegments),
-    [renderSegments]
+    () => mergeNonSandboxSegments(renderSegments, sandboxMode === "blackboard"),
+    [renderSegments, sandboxMode]
   );
 
   const segments = useMemo(
