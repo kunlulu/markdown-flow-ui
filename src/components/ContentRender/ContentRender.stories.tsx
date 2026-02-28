@@ -1035,6 +1035,7 @@ export const SVGDemo: Story = {
 };
 
 const HTML_DEMO_STREAM_SOURCE = `
+
 div长度
 <div style=\"display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100vh; background: linear-gradient(to bottom right, #f8fafc, #e0e7ff); font-family: 'Arial', sans-serif; padding: 2rem;\">\n  <div style=\"font-size: 4.5rem; font-weight: 900; color: #0F63EE; text-align: center; line-height: 1.2; margin-bottom: 3rem;\">\n    AI 是一种工具\n  </div>\n  <div style=\"font-size: 4.5rem; font-weight: 900; color: #0F63EE; text-align: center; line-height: 1.2; margin-bottom: 3rem;\">\n    每种 AI 产品都需要<br>学习使用方法\n  </div>\n  <div style=\"font-size: 4.5rem; font-weight: 900; color: #0F63EE; text-align: center; line-height: 1.2;\">\n    打造 AI 产品是<br>技术高手的事情\n  </div>\n</div>
 测试一下
@@ -1599,6 +1600,15 @@ export const HTMLDemoIframeOnly: Story = {
 
     return (
       <>
+        测试diff
+        <div style={{ width: "100%", height: "700px", background: "#e0e0e0" }}>
+          <IframeSandbox
+            hideFullScreen
+            type="sandbox"
+            content={`<div class=\"w-full h-screen overflow-hidden flex items-center justify-center bg-gradient-to-r from-blue-500 to-purple-600 p-[4vmin]\">\n  <h1 class=\"text-[6vmin] font-bold text-white\">欢迎来到ai-shifu</h1>\n</div>`}
+            mode={args.sandboxMode}
+          />
+        </div>
         Text不渲染
         <div style={{ width: "100%", height: "700px", background: "#e0e0e0" }}>
           <IframeSandbox
@@ -1696,6 +1706,97 @@ export const HTMLDemoIframeOnly: Story = {
           />
         </div>
       </>
+    );
+  },
+};
+
+const BLACKBOARD_DIFF_INITIAL_CONTENT = `<div class="w-full h-screen overflow-hidden flex items-center justify-center bg-gradient-to-r from-blue-500 to-purple-600 p-[4vmin]">
+  <h1 class="text-[6vmin] font-bold text-white">欢迎来到ai-shifu</h1>
+</div>`;
+
+const BLACKBOARD_DIFF_PATCH_CONTENT = `!+++
+--- a/0
++++ b/0
+@@ -1,3 +1,3 @@
+-<div class="w-full h-screen overflow-hidden flex items-center justify-center bg-gradient-to-r from-blue-500 to-purple-600 p-[4vmin]">
++<div class="w-full h-screen overflow-hidden flex items-center justify-center bg-gradient-to-r from-blue-500 to-purple-600 p-[4vmin]">
+   <h1 class="text-[6vmin] font-bold text-white">欢迎来到ai-shifu</h1>
+-</div>
++  <h1 class="text-[6vmin] font-bold text-white">欢迎来到 ai师傅</h1>
++</div>
+!+++`;
+
+export const IframeSandboxBlackboardDiffPlayback: Story = {
+  name: "IframeSandbox Blackboard Diff Playback",
+  args: {
+    sandboxFullscreenButtonText: "全屏浏览",
+    sandboxMode: "blackboard",
+  },
+  render: (args) => {
+    const steps = [
+      BLACKBOARD_DIFF_INITIAL_CONTENT,
+      BLACKBOARD_DIFF_PATCH_CONTENT,
+    ];
+    const [stepIndex, setStepIndex] = useState(0);
+
+    return (
+      <div style={{ width: "100%", maxWidth: 1200 }}>
+        <div
+          style={{
+            display: "flex",
+            alignItems: "center",
+            gap: 12,
+            marginBottom: 12,
+          }}
+        >
+          <button
+            type="button"
+            onClick={() => setStepIndex((prev) => Math.max(0, prev - 1))}
+            disabled={stepIndex === 0}
+            style={{
+              padding: "8px 12px",
+              borderRadius: 8,
+              border: "1px solid #d1d5db",
+              background: stepIndex === 0 ? "#f3f4f6" : "#ffffff",
+              color: "#111827",
+              cursor: stepIndex === 0 ? "not-allowed" : "pointer",
+            }}
+          >
+            后退
+          </button>
+          <button
+            type="button"
+            onClick={() =>
+              setStepIndex((prev) => Math.min(steps.length - 1, prev + 1))
+            }
+            disabled={stepIndex === steps.length - 1}
+            style={{
+              padding: "8px 12px",
+              borderRadius: 8,
+              border: "1px solid #d1d5db",
+              background:
+                stepIndex === steps.length - 1 ? "#f3f4f6" : "#ffffff",
+              color: "#111827",
+              cursor:
+                stepIndex === steps.length - 1 ? "not-allowed" : "pointer",
+            }}
+          >
+            前进
+          </button>
+          <span style={{ fontSize: 14, color: "#374151" }}>
+            Step {stepIndex + 1} / {steps.length}
+          </span>
+        </div>
+
+        <div style={{ width: "100%", height: "700px", background: "#e0e0e0" }}>
+          <IframeSandbox
+            hideFullScreen
+            type="sandbox"
+            content={steps[stepIndex]}
+            mode={args.sandboxMode}
+          />
+        </div>
+      </div>
     );
   },
 };
