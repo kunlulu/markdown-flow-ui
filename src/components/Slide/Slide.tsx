@@ -78,10 +78,11 @@ interface InteractionOverlayCardProps {
   readonly?: boolean;
 }
 
-export interface SlideInteractionTexts extends Pick<
-  ContentRenderProps,
-  "confirmButtonText" | "copyButtonText" | "copiedButtonText"
-> {
+export interface SlideInteractionTexts
+  extends Pick<
+    ContentRenderProps,
+    "confirmButtonText" | "copyButtonText" | "copiedButtonText"
+  > {
   title?: string;
 }
 
@@ -163,7 +164,6 @@ export interface SlideProps extends React.ComponentProps<"section"> {
   onPlayerVisibilityChange?: (visible: boolean) => void;
   onMobileViewModeChange?: (viewMode: MobileViewMode) => void;
   onStepChange?: (element: Element | undefined, index: number) => void;
-  enableIframeScaling?: boolean;
   disableLoadingOverlay?: boolean;
 }
 
@@ -186,7 +186,6 @@ const Slide: React.FC<SlideProps> = ({
   onPlayerVisibilityChange,
   onMobileViewModeChange,
   onStepChange,
-  enableIframeScaling = true,
   disableLoadingOverlay = false,
   className,
   onPointerDown,
@@ -640,7 +639,7 @@ const Slide: React.FC<SlideProps> = ({
 
   const hasResolvedCurrentInteraction = Boolean(
     currentInteractionElement?.readonly ||
-    currentInteractionElement?.user_input?.trim()
+      currentInteractionElement?.user_input?.trim()
   );
 
   const shouldBlockPlaybackForInteraction =
@@ -1208,7 +1207,6 @@ const Slide: React.FC<SlideProps> = ({
           }
           type="sandbox"
           content={element.content as string}
-          enableScaling={enableIframeScaling}
         />
       );
     }

@@ -1530,8 +1530,257 @@ export const SVGDemo: Story = {
 //   </div>
 // </div>`;
 
-const HTML_DEMO_STREAM_SOURCE =
-  '<div id="ppt-container" class="w-full min-h-screen bg-gradient-to-br from-gray-50 to-blue-50 p-[4vmin]">\n  <div class="w-full h-screen flex flex-col items-center justify-[safe_center] gap-[4vmin] p-[4vmin] overflow-y-auto">\n    <!-- 顶部标题区 -->\n    <div class="w-full max-w-[1200px] text-center">\n      <h1 class="text-[6vmin] font-bold text-gray-800 mb-[2vmin]">三大考勤流程，一次搞定</h1>\n      <p class="text-[3vmin] text-gray-600">本节目标总览</p>\n    </div>\n\n    <!-- 目标说明区 -->\n    <div class="w-full max-w-[1200px] bg-white rounded-[2vmin] shadow-lg p-[5vmin] border-l-[1vmin] border-[#0F63EE]">\n      <h2 class="text-[4vmin] font-bold text-gray-800 mb-[3vmin]">🎯 本节目标</h2>\n      <p class="text-[2.5vmin] text-gray-700 leading-[3.5vmin]">\n        学会在 <strong>UNKNOWN</strong> 系统内，一站式完成 <strong>请假、公出、加班</strong> 三大核心考勤流程的发起与处理，确保每一次申请都符合规范，避免后续麻烦。\n      </p>\n    </div>\n\n    <!-- 三流程概览区 -->\n    <div class="w-full max-w-[1200px]">\n      <h2 class="text-[4vmin] font-bold text-gray-800 mb-[4vmin] text-center">📋 三大核心流程概览</h2>\n      <div class="grid grid-cols-1 md:grid-cols-3 gap-[4vmin]">\n        <!-- 请假流程卡片 -->\n        <div class="bg-white rounded-[2vmin] shadow-lg p-[4vmin] flex flex-col items-center text-center border-t-[0.5vmin] border-blue-200">\n          <div class="w-[8vmin] h-[8vmin] bg-blue-100 rounded-full flex items-center justify-center mb-[3vmin]">\n            <span class="text-[4vmin]">🏖️</span>\n          </div>\n          <h3 class="text-[3.5vmin] font-bold text-gray-800 mb-[2vmin]">请假流程</h3>\n          <p class="text-[2.5vmin] text-gray-600 flex-grow">因个人事由或病假需要离开岗位时发起的申请流程。</p>\n        </div>\n        <!-- 公出流程卡片 -->\n        <div class="bg-white rounded-[2vmin] shadow-lg p-[4vmin] flex flex-col items-center text-center border-t-[0.5vmin] border-green-200">\n          <div class="w-[8vmin] h-[8vmin] bg-green-100 rounded-full flex items-center justify-center mb-[3vmin]">\n            <span class="text-[4vmin]">✈️</span>\n          </div>\n          <h3 class="text-[3.5vmin] font-bold text-gray-800 mb-[2vmin]">公出流程</h3>\n          <p class="text-[2.5vmin] text-gray-600 flex-grow">因公务需要外出（如拜访客户、参加会议）时发起的申请流程。</p>\n        </div>\n        <!-- 加班流程卡片 -->\n        <div class="bg-white rounded-[2vmin] shadow-lg p-[4vmin] flex flex-col items-center text-center border-t-[0.5vmin] border-purple-200">\n          <div class="w-[8vmin] h-[8vmin] bg-purple-100 rounded-full flex items-center justify-center mb-[3vmin]">\n            <span class="text-[4vmin]">💻</span>\n          </div>\n          <h3 class="text-[3.5vmin] font-bold text-gray-800 mb-[2vmin]">加班流程</h3>\n          <p class="text-[2.5vmin] text-gray-600 flex-grow">在标准工作时间外继续工作，需要申请确认与记录时发起的流程。</p>\n        </div>\n      </div>\n    </div>\n\n    <!-- 核心原则区 -->\n    <div class="w-full max-w-[1200px] bg-gradient-to-r from-blue-600 to-[#0F63EE] rounded-[2vmin] shadow-xl p-[5vmin] text-white">\n      <h2 class="text-[4vmin] font-bold mb-[4vmin] text-center">✅ 成功发起流程的三大核心原则</h2>\n      <div class="grid grid-cols-1 md:grid-cols-3 gap-[4vmin]">\n        <div class="bg-white/20 rounded-[1.5vmin] p-[3vmin] backdrop-blur-sm flex flex-col items-center text-center">\n          <div class="text-[5vmin] mb-[2vmin]">👨‍💼</div>\n          <h3 class="text-[3vmin] font-bold mb-[1.5vmin]">上级同意</h3>\n          <p class="text-[2.2vmin]">流程发起前，务必获得直接上级的知晓与同意，这是流程得以推进的第一步。</p>\n        </div>\n        <div class="bg-white/20 rounded-[1.5vmin] p-[3vmin] backdrop-blur-sm flex flex-col items-center text-center">\n          <div class="text-[5vmin] mb-[2vmin]">📅</div>\n          <h3 class="text-[3vmin] font-bold mb-[1.5vmin]">当月务必发起</h3>\n          <p class="text-[2.2vmin]">所有考勤申请务必在事件发生的当月内发起流程，逾期可能无法补办，影响考勤结果。</p>\n        </div>\n        <div class="bg-white/20 rounded-[1.5vmin] p-[3vmin] backdrop-blur-sm flex flex-col items-center text-center">\n          <div class="text-[5vmin] mb-[2vmin]">📎</div>\n          <h3 class="text-[3vmin] font-bold mb-[1.5vmin]">材料齐全</h3>\n          <p class="text-[2.2vmin]">根据流程类型，提前准备好必要的证明文件（如病假条、会议通知等），并随流程一并提交。</p>\n        </div>\n      </div>\n      <p class="text-[2.5vmin] text-center mt-[4vmin] text-blue-100 font-medium">牢记这三点，kk，你就能在 UNKNOWN 系统里游刃有余，轻松搞定所有考勤事宜！</p>\n    </div>\n  </div>\n</div>\n\n<style>\n  /* 确保窄屏下流程卡片纵向堆叠 */\n  @media (max-width: 768px) {\n    #ppt-container .grid-cols-3 {\n      grid-template-columns: 1fr;\n    }\n  }\n  /* 基础滚动与盒模型设定 */\n  #ppt-container * {\n    box-sizing: border-box;\n  }\n</style>\n';
+const HTML_DEMO_STREAM_SOURCE = `<div style="width:100%; height:100vh; overflow-x:hidden; overflow-y:auto; display:flex; flex-direction:column; align-items:center; justify-content:safe center; padding:3.5em; font-size:clamp(12px,calc(100vw/48),3vh); background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%); color: #e2e8f0;">
+  <div class="flex flex-col items-center justify-center w-full max-w-6xl mx-auto text-center space-y-8">
+    <!-- 标题 -->
+    <div class="space-y-2">
+      <h1 style="font-size:2.5em; font-weight:700; color:#f8fafc;">假设确认与路径展开</h1>
+      <p style="font-size:1.25em; font-weight:500; color:#94a3b8;">你的直觉指向了最核心的机械环节</p>
+    </div>
+
+    <!-- 假设确认卡片 -->
+    <div class="card w-full max-w-4xl bg-base-100/90 backdrop-blur-sm shadow-2xl border border-slate-700">
+      <div class="card-body items-center text-center space-y-6">
+        <div class="w-full">
+          <div class="flex justify-center items-center mb-4">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-16 w-16 text-error" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+            </svg>
+          </div>
+          <h2 style="font-size:2em; font-weight:700; color:#1e293b; margin-bottom:0.5em;">第一假设确认</h2>
+          <div class="badge badge-error gap-2 p-4 text-lg">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" /></svg>
+            发动机本体或维护故障
+          </div>
+          <p style="font-size:1.1em; color:#475569; font-weight:500; margin-top:1em;">你凭直觉将调查重点放在了发动机本身或其维护状态上。</p>
+        </div>
+
+        <div class="divider"></div>
+
+        <!-- 针对该假设的说明 -->
+        <div class="w-full text-left space-y-6">
+          <div class="alert alert-error shadow-lg">
+            <div>
+              <svg xmlns="http://www.w3.org/2000/svg" class="stroke-current flex-shrink-0 h-6 w-6" fill="none" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.998-.833-2.732 0L4.346 16.5c-.77.833.192 2.5 1.732 2.5z" /></svg>
+              <div>
+                <h3 style="font-size:1.1em; font-weight:600;">针对“发动机本体或维护故障”的调查路径</h3>
+                <p style="font-size:0.95em;">如果沿着这条线深挖，作为调查员，你通常需要系统性地审查以下证据：</p>
+                <ul class="list-disc pl-5 mt-2 space-y-1">
+                  <li style="font-size:0.95em;"><span class="font-semibold">机龄与维修记录：</span>该发动机的总循环数、小时数，近期是否进行过重大维修或部件更换。</li>
+                  <li style="font-size:0.95em;"><span class="font-semibold">历史性能数据：</span>飞行数据记录器（FDR）中长期的排气温度（EGT）、振动值趋势，是否存在渐进性恶化的迹象。</li>
+                  <li style="font-size:0.95em;"><span class="font-semibold">关键物证：</span>涡轮叶片、压气机叶片的断裂情况，轴承、齿轮箱的损伤痕迹。</li>
+                  <li style="font-size:0.95em;"><span class="font-semibold">维护符合性：</span>最后一次大修或检查是否严格按照工卡执行，有无记录缺陷或保留故障。</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <!-- 与其他假设的对比提示 -->
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div class="alert alert-info shadow-lg">
+              <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="stroke-current flex-shrink-0 h-6 w-6" fill="none" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></path></svg>
+                <div>
+                  <h3 style="font-size:1.1em; font-weight:600;">如果是“燃油系统问题”</h3>
+                  <p style="font-size:0.85em;">这类问题更常见于双发同时出现推力波动或丧失，且通常需要燃油取样结果来证实。不能仅凭直觉定案。</p>
+                </div>
+              </div>
+            </div>
+            <div class="alert alert-warning shadow-lg">
+              <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="stroke-current flex-shrink-0 h-6 w-6" fill="none" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.998-.833-2.732 0L4.346 16.5c-.77.833.192 2.5 1.732 2.5z" /></svg>
+                <div>
+                  <h3 style="font-size:1.1em; font-weight:600;">如果是“外界环境受损”</h3>
+                  <p style="font-size:0.85em;">火山灰、鸟击、异物吸入都可能造成严重损伤，但这需要结合当天环境报告和发动机入口的物证（如羽毛、火山灰玻璃化）来判定。</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 操作视角的关联 -->
+        <div class="w-full mt-4">
+          <div class="alert shadow-lg bg-primary/10 border border-primary/30">
+            <div>
+              <svg xmlns="http://www.w3.org/2000/svg" class="stroke-current flex-shrink-0 h-6 w-6 text-primary" fill="none" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" /></path></svg>
+              <div class="text-left">
+                <h3 style="font-size:1.1em; font-weight:600; color:#1e40af;">飞行操作调查员的关联思考</h3>
+                <p style="font-size:0.95em; color:#1e3a8a;">即使根本原因是机械故障，<span class="font-semibold">机组面对的也是一系列仪表指示和飞机反应</span>。例如，涡轮叶片故障可能首先表现为振动值飙升和排气温度（EGT）异常。你的任务是：<span class="font-semibold">机组是否及时、正确地识别了这些异常？他们后续的处置（如收油门、执行检查单）是否符合该故障模式下的最佳操作？</span></p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 下一步行动 -->
+    <div class="w-full max-w-3xl mt-8">
+      <p style="font-size:1.25em; font-weight:600; color:#cbd5e1; margin-bottom:1em;">基于“发动机本体或维护故障”的假设，我们首先需要获取该发动机的历史维护记录和关键性能参数。</p>
+      <button class="btn btn-error btn-lg" onclick="requestEngineRecords()">
+        调取右发历史维护记录
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-2" viewBox="0 0 20 20" fill="currentColor">
+          <path fill-rule="evenodd" d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z" clip-rule="evenodd" />
+        </svg>
+      </button>
+      <p class="text-sm text-slate-400 mt-4"><em>注：根据案件卡片，右发出现了温度升高信号，因此我们优先调查右发。</em></p>
+    </div>
+  </div>
+</div>
+
+<style>
+*,*::before,*::after{box-sizing:border-box;overflow-wrap:break-word;word-wrap:break-word}
+</style>
+
+<script>
+function requestEngineRecords() {
+  console.log('学员请求调取右发历史维护记录。');
+  // 在实际课程中，这里会触发获取发动机维护记录的相关内容
+  alert('正在向维修数据库发送查询请求，调取涉事飞机右发（普惠JT8D）的历史维护记录、近期工卡执行情况及保留故障清单...');
+}
+</script><div style="width:100%; height:100vh; overflow-x:hidden; overflow-y:auto; display:flex; flex-direction:column; align-items:center; justify-content:safe center; padding:3.5em; font-size:clamp(12px,calc(100vw/48),3vh); background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%); color: #e2e8f0;">
+  <div class="flex flex-col items-center justify-center w-full max-w-6xl mx-auto text-center space-y-8">
+    <!-- 标题 -->
+    <div class="space-y-2">
+      <h1 style="font-size:2.5em; font-weight:700; color:#f8fafc;">动力装置调查基础</h1>
+      <p style="font-size:1.25em; font-weight:500; color:#94a3b8;">发动机故障的核心线索与逻辑</p>
+    </div>
+
+    <!-- 核心思路卡片 -->
+    <div class="card w-full max-w-4xl bg-base-100/90 backdrop-blur-sm shadow-2xl border border-slate-700">
+      <div class="card-body items-center text-center space-y-6">
+        <div class="w-full">
+          <div class="flex justify-center items-center mb-4">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-16 w-16 text-amber-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z" />
+            </svg>
+          </div>
+          <h2 style="font-size:2em; font-weight:700; color:#1e293b; margin-bottom:0.5em;">喷气发动机故障调查的核心思路</h2>
+          <p style="font-size:1.1em; color:#475569;">当一台发动机出现问题时，有经验的调查员会遵循一个清晰的逻辑链条来定位故障。这个链条也是飞行员在驾驶舱需要快速判断的依据。</p>
+        </div>
+
+        <div class="divider"></div>
+
+        <!-- 调查逻辑链条 -->
+        <div class="w-full space-y-8">
+          <!-- 第一步 -->
+          <div class="steps steps-vertical lg:steps-horizontal w-full">
+            <div class="step step-primary">
+              <div class="step-circle">1</div>
+              <div class="step-content text-left">
+                <h3 style="font-size:1.5em; font-weight:600; color:#1e293b;">先看推力有没有下降</h3>
+                <p style="font-size:1em; color:#475569;"><span class="font-semibold">调查含义：</span>推力是发动机做功的最终输出。推力下降（飞行员感觉飞机加速慢、爬升率低）是最直接的“效果”信号。</p>
+                <p style="font-size:0.9em; color:#64748b; margin-top:0.5em;"><span class="font-semibold">工程解释：</span>说明从进气、压缩、燃烧到排气的整个能量转换链条中，有一个或多个环节出了问题，导致发动机不再有效做功。</p>
+              </div>
+            </div>
+
+            <div class="step step-primary">
+              <div class="step-circle">2</div>
+              <div class="step-content text-left">
+                <h3 style="font-size:1.5em; font-weight:600; color:#1e293b;">再看温度有没有异常上升</h3>
+                <p style="font-size:1em; color:#475569;"><span class="font-semibold">调查含义：</span>排气温度（EGT）是发动机内部健康状况的“体温计”。异常升高是关键的“警告”信号。</p>
+                <p style="font-size:0.9em; color:#64748b; margin-top:0.5em;"><span class="font-semibold">工程解释：</span>温度上升通常意味着内部出现了气流失衡（如喘振）、燃烧不完全、或部件损伤（如涡轮叶片损坏）导致的摩擦和热效率下降。</p>
+              </div>
+            </div>
+
+            <div class="step step-primary">
+              <div class="step-circle">3</div>
+              <div class="step-content text-left">
+                <h3 style="font-size:1.5em; font-weight:600; color:#1e293b;">最后看振动、声音和方向偏转</h3>
+                <p style="font-size:1em; color:#475569;"><span class="font-semibold">调查含义：</span>振动值剧增、异常噪音（如爆响、啸叫）、飞机向一侧偏转，这些是故障的“物理”表现。</p>
+                <p style="font-size:0.9em; color:#64748b; margin-top:0.5em;"><span class="font-semibold">工程解释：</span>振动常常直接提示转子（压气机或涡轮）的动平衡被破坏，部件可能已出现断裂、脱落或严重摩擦。</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- 逻辑关系图（定性描述） -->
+          <div class="card bg-base-200 border border-slate-600 mt-8">
+            <div class="card-body">
+              <h3 style="font-size:1.5em; font-weight:600; color:#475569; text-align:center;">线索间的逻辑关系</h3>
+              <div class="flex flex-col items-center mt-4">
+                <div class="text-center space-y-2">
+                  <div class="badge badge-lg badge-primary">推力下降</div>
+                  <div class="text-xl">⬇️ (可能伴随)</div>
+                  <div class="badge badge-lg badge-warning">温度上升</div>
+                  <div class="text-xl">⬇️ (常常引发)</div>
+                  <div class="badge badge-lg badge-error">振动/异响</div>
+                </div>
+                <p class="text-sm text-slate-500 mt-4">这是一个典型的故障发展链条。但实际中，顺序和组合可能因故障模式而异。</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 操作视角的关联 -->
+        <div class="w-full mt-6">
+          <div class="alert shadow-lg bg-primary/10 border border-primary/30">
+            <div>
+              <svg xmlns="http://www.w3.org/2000/svg" class="stroke-current flex-shrink-0 h-6 w-6 text-primary" fill="none" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+              <div class="text-left">
+                <h3 style="font-size:1.1em; font-weight:600; color:#1e40af;">飞行操作调查员的思考</h3>
+                <p style="font-size:0.95em; color:#1e3a8a;">在紧急情况下，飞行员可能无法同时分析所有线索。<span class="font-semibold">他们必须快速抓住一个最可靠、最直接的信号来触发正确的处置程序</span>（例如“发动机失效/严重损坏”检查单）。你的任务是评估：<span class="font-semibold">机组最先关注的是什么？这个选择是否合理？</span></p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 情景模拟与选择 -->
+    <div class="w-full max-w-3xl mt-8">
+      <h3 style="font-size:1.75em; font-weight:700; color:#cbd5e1; margin-bottom:0.5em;">🛫 情景模拟：起飞后的关键几秒</h3>
+      <p style="font-size:1.1em; color:#94a3b8; margin-bottom:1.5em;">假设你是当班飞行员，在起飞爬升阶段，突然感到飞机加速变慢，同时仪表板上多个警告灯和参数开始变化。时间紧迫，你只能优先抓住一个最核心的线索来初步判断发动机状态。你会先抓什么？</p>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <button class="btn btn-outline btn-primary flex flex-col items-center justify-center h-auto py-6" onclick="recordPriority('thrust_loss')">
+          <div class="text-3xl mb-2">📉</div>
+          <div style="font-size:1.1em; font-weight:600;">推力下降</div>
+          <div class="text-xs opacity-80 mt-1">最直接的性能丧失信号</div>
+        </button>
+        <button class="btn btn-outline btn-warning flex flex-col items-center justify-center h-auto py-6" onclick="recordPriority('temp_rise')">
+          <div class="text-3xl mb-2">🌡️</div>
+          <div style="font-size:1.1em; font-weight:600;">温度异常上升</div>
+          <div class="text-xs opacity-80 mt-1">发动机内部损伤的警告</div>
+        </button>
+        <button class="btn btn-outline btn-error flex flex-col items-center justify-center h-auto py-6" onclick="recordPriority('vibration')">
+          <div class="text-3xl mb-2">📳</div>
+          <div style="font-size:1.1em; font-weight:600;">剧烈振动/异响</div>
+          <div class="text-xs opacity-80 mt-1">部件可能已严重损坏</div>
+        </button>
+      </div>
+      <p class="text-sm text-slate-400 mt-4">你的选择反映了在紧急情况下的决策倾向，这将影响你对机组后续操作的理解。</p>
+    </div>
+  </div>
+</div>
+
+<style>
+*,*::before,*::after{box-sizing:border-box;overflow-wrap:break-word;word-wrap:break-word}
+</style>
+
+<script>
+function recordPriority(priority) {
+  const priorityMap = {
+    'thrust_loss': '推力下降',
+    'temp_rise': '温度异常上升',
+    'vibration': '剧烈振动/异响'
+  };
+  const choice = priorityMap[priority];
+
+  // 复述并解释选择
+  let explanation = '';
+  switch(priority) {
+    case 'thrust_loss':
+      explanation = '你优先关注性能输出。这通常是触发“发动机失效”记忆项目或检查单的最直接原因。';
+      break;
+    case 'temp_rise':
+      explanation = '你优先关注发动机内部健康。高温可能意味着即将发生更严重的机械故障，需要立即减少推力。';
+      break;
+    case 'vibration':
+      explanation = '你优先关注物理损伤迹象。剧烈振动可能意味着转子失衡或部件脱落，有立即关车的必要性。';
+      break;
+  }
+
+}
+</script>`;
+// '<div id="ppt-container" class="w-full min-h-screen bg-gradient-to-br from-gray-50 to-blue-50 p-[4vmin]">\n  <div class="w-full h-screen flex flex-col items-center justify-[safe_center] gap-[4vmin] p-[4vmin] overflow-y-auto">\n    <!-- 顶部标题区 -->\n    <div class="w-full max-w-[1200px] text-center">\n      <h1 class="text-[6vmin] font-bold text-gray-800 mb-[2vmin]">三大考勤流程，一次搞定</h1>\n      <p class="text-[3vmin] text-gray-600">本节目标总览</p>\n    </div>\n\n    <!-- 目标说明区 -->\n    <div class="w-full max-w-[1200px] bg-white rounded-[2vmin] shadow-lg p-[5vmin] border-l-[1vmin] border-[#0F63EE]">\n      <h2 class="text-[4vmin] font-bold text-gray-800 mb-[3vmin]">🎯 本节目标</h2>\n      <p class="text-[2.5vmin] text-gray-700 leading-[3.5vmin]">\n        学会在 <strong>UNKNOWN</strong> 系统内，一站式完成 <strong>请假、公出、加班</strong> 三大核心考勤流程的发起与处理，确保每一次申请都符合规范，避免后续麻烦。\n      </p>\n    </div>\n\n    <!-- 三流程概览区 -->\n    <div class="w-full max-w-[1200px]">\n      <h2 class="text-[4vmin] font-bold text-gray-800 mb-[4vmin] text-center">📋 三大核心流程概览</h2>\n      <div class="grid grid-cols-1 md:grid-cols-3 gap-[4vmin]">\n        <!-- 请假流程卡片 -->\n        <div class="bg-white rounded-[2vmin] shadow-lg p-[4vmin] flex flex-col items-center text-center border-t-[0.5vmin] border-blue-200">\n          <div class="w-[8vmin] h-[8vmin] bg-blue-100 rounded-full flex items-center justify-center mb-[3vmin]">\n            <span class="text-[4vmin]">🏖️</span>\n          </div>\n          <h3 class="text-[3.5vmin] font-bold text-gray-800 mb-[2vmin]">请假流程</h3>\n          <p class="text-[2.5vmin] text-gray-600 flex-grow">因个人事由或病假需要离开岗位时发起的申请流程。</p>\n        </div>\n        <!-- 公出流程卡片 -->\n        <div class="bg-white rounded-[2vmin] shadow-lg p-[4vmin] flex flex-col items-center text-center border-t-[0.5vmin] border-green-200">\n          <div class="w-[8vmin] h-[8vmin] bg-green-100 rounded-full flex items-center justify-center mb-[3vmin]">\n            <span class="text-[4vmin]">✈️</span>\n          </div>\n          <h3 class="text-[3.5vmin] font-bold text-gray-800 mb-[2vmin]">公出流程</h3>\n          <p class="text-[2.5vmin] text-gray-600 flex-grow">因公务需要外出（如拜访客户、参加会议）时发起的申请流程。</p>\n        </div>\n        <!-- 加班流程卡片 -->\n        <div class="bg-white rounded-[2vmin] shadow-lg p-[4vmin] flex flex-col items-center text-center border-t-[0.5vmin] border-purple-200">\n          <div class="w-[8vmin] h-[8vmin] bg-purple-100 rounded-full flex items-center justify-center mb-[3vmin]">\n            <span class="text-[4vmin]">💻</span>\n          </div>\n          <h3 class="text-[3.5vmin] font-bold text-gray-800 mb-[2vmin]">加班流程</h3>\n          <p class="text-[2.5vmin] text-gray-600 flex-grow">在标准工作时间外继续工作，需要申请确认与记录时发起的流程。</p>\n        </div>\n      </div>\n    </div>\n\n    <!-- 核心原则区 -->\n    <div class="w-full max-w-[1200px] bg-gradient-to-r from-blue-600 to-[#0F63EE] rounded-[2vmin] shadow-xl p-[5vmin] text-white">\n      <h2 class="text-[4vmin] font-bold mb-[4vmin] text-center">✅ 成功发起流程的三大核心原则</h2>\n      <div class="grid grid-cols-1 md:grid-cols-3 gap-[4vmin]">\n        <div class="bg-white/20 rounded-[1.5vmin] p-[3vmin] backdrop-blur-sm flex flex-col items-center text-center">\n          <div class="text-[5vmin] mb-[2vmin]">👨‍💼</div>\n          <h3 class="text-[3vmin] font-bold mb-[1.5vmin]">上级同意</h3>\n          <p class="text-[2.2vmin]">流程发起前，务必获得直接上级的知晓与同意，这是流程得以推进的第一步。</p>\n        </div>\n        <div class="bg-white/20 rounded-[1.5vmin] p-[3vmin] backdrop-blur-sm flex flex-col items-center text-center">\n          <div class="text-[5vmin] mb-[2vmin]">📅</div>\n          <h3 class="text-[3vmin] font-bold mb-[1.5vmin]">当月务必发起</h3>\n          <p class="text-[2.2vmin]">所有考勤申请务必在事件发生的当月内发起流程，逾期可能无法补办，影响考勤结果。</p>\n        </div>\n        <div class="bg-white/20 rounded-[1.5vmin] p-[3vmin] backdrop-blur-sm flex flex-col items-center text-center">\n          <div class="text-[5vmin] mb-[2vmin]">📎</div>\n          <h3 class="text-[3vmin] font-bold mb-[1.5vmin]">材料齐全</h3>\n          <p class="text-[2.2vmin]">根据流程类型，提前准备好必要的证明文件（如病假条、会议通知等），并随流程一并提交。</p>\n        </div>\n      </div>\n      <p class="text-[2.5vmin] text-center mt-[4vmin] text-blue-100 font-medium">牢记这三点，kk，你就能在 UNKNOWN 系统里游刃有余，轻松搞定所有考勤事宜！</p>\n    </div>\n  </div>\n</div>\n\n<style>\n  /* 确保窄屏下流程卡片纵向堆叠 */\n  @media (max-width: 768px) {\n    #ppt-container .grid-cols-3 {\n      grid-template-columns: 1fr;\n    }\n  }\n  /* 基础滚动与盒模型设定 */\n  #ppt-container * {\n    box-sizing: border-box;\n  }\n</style>\n';
 // '<div class="w-full h-screen flex flex-col items-center justify-[safe_center] bg-gradient-to-br from-blue-50 to-indigo-100 p-[4vmin]">\n  <div class="flex flex-col items-center justify-center flex-1 w-full max-w-[90vmin] text-center gap-[3vmin]">\n    <!-- 头像 -->\n    <div class="relative">\n      <img src="https://resource.ai-shifu.com/ac186b833d0e417fb02737910b3a5ae0" alt="孙志岗" class="w-[20vmin] h-[20vmin] rounded-full border-[0.5vmin] border-white shadow-xl object-cover">\n      <div class="absolute -bottom-[1vmin] -right-[1vmin] bg-[#0F63EE] text-white text-[1.8vmin] font-bold px-[1.5vmin] py-[0.5vmin] rounded-full">教师</div>\n    </div>\n    <!-- 课程名称 -->\n    <h1 class="text-[5.5vmin] font-bold text-gray-900 leading-tight">跟 AI 学 AI 通识</h1>\n    <!-- 主讲人 -->\n    <div class="text-[3.5vmin] font-semibold text-[#0F63EE]">主讲：孙志岗</div>\n    <!-- 个人目标 -->\n    <div class="text-[2.8vmin] text-gray-700 bg-white/80 backdrop-blur-sm rounded-[2vmin] p-[3vmin] shadow-lg border border-gray-200 max-w-[80vmin] leading-[3.8vmin]">\n      <span class="font-bold text-[#0F63EE]">个人目标：</span>帮助 100 万人顺利走进 AGI 时代\n    </div>\n    <!-- 专属授课提示 -->\n    <div class="text-[2.2vmin] text-gray-600 italic mt-[2vmin]">为你量身定制的 AI 通识之旅</div>\n  </div>\n</div>\n\n';
 
 const STREAM_CODE_IFRAME_CONTENT = `\`\`\`c
