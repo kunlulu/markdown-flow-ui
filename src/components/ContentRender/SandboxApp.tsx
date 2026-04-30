@@ -1,6 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
 import LoadingOverlayCard from "../ui/loading-overlay-card";
-import type { ScalingWindow } from "./utils/iframe-scaling";
 
 export interface SandboxAppProps {
   html: string;
@@ -10,7 +9,6 @@ export interface SandboxAppProps {
   mode?: "content" | "blackboard";
   hasRootVhHeight?: boolean;
   stretchRootHeight?: boolean;
-  enableScaling?: boolean;
   disableLoadingOverlay?: boolean;
 }
 
@@ -97,7 +95,6 @@ const SandboxApp: React.FC<SandboxAppProps> = ({
   mode = "content",
   hasRootVhHeight = false,
   stretchRootHeight = false,
-  enableScaling = false,
   disableLoadingOverlay = false,
 }) => {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -276,11 +273,6 @@ const SandboxApp: React.FC<SandboxAppProps> = ({
         node.remove();
       }
     });
-    if (enableScaling) {
-      const win = container.ownerDocument?.defaultView as ScalingWindow | null;
-      win?.__mdf_triggerFitContent?.();
-    }
-
     requestAnimationFrame(() => {
       if (hasStyles) {
         settleStateWithMinimumDelay(
@@ -303,7 +295,7 @@ const SandboxApp: React.FC<SandboxAppProps> = ({
         );
       }
     });
-  }, [html, resetToken, enableScaling]);
+  }, [html, resetToken]);
 
   useEffect(
     () => () => {
