@@ -23,35 +23,45 @@ export default meta;
 
 type Story = StoryObj<typeof meta>;
 
-const SANDBOX_ELEMENT_CONTENT = `<div id="sandbox-regression-root" class="min-h-[100dvh] w-full bg-slate-50 p-[4vmin] text-slate-900">
-  <div class="mx-auto flex min-h-[calc(100dvh-8vmin)] max-w-5xl flex-col justify-center gap-[3vmin]">
-    <div class="rounded-[2vmin] bg-white p-[4vmin] shadow-lg ring-1 ring-slate-200">
-      <p class="text-[2.2vmin] font-semibold uppercase text-sky-700">Iframe sandbox regression</p>
-      <h1 class="mt-[1vmin] text-[5vmin] font-bold leading-tight">One element, two rendering surfaces</h1>
-      <p class="mt-[2vmin] text-[2.5vmin] leading-relaxed text-slate-600">
-        This iframe checks that HTML, Tailwind classes, injected styles, and scripts stay stable in reading and listen modes.
-      </p>
-      <div class="mt-[3vmin] grid grid-cols-1 gap-[2vmin] md:grid-cols-3">
-        <div class="rounded-[1.5vmin] bg-sky-50 p-[2.5vmin] text-sky-900">ContentRender</div>
-        <div class="rounded-[1.5vmin] bg-emerald-50 p-[2.5vmin] text-emerald-900">Slide</div>
-        <div id="sandbox-regression-script-status" class="rounded-[1.5vmin] bg-amber-50 p-[2.5vmin] text-amber-900">Waiting for script</div>
-      </div>
-    </div>
+const SANDBOX_ELEMENT_CONTENT = `
+<div style="width:100%; height:100vh; overflow-x:hidden; overflow-y:auto; display:flex; flex-direction:column; align-items:center; justify-content:safe center; padding:3.5em; font-size:clamp(12px,calc(100vw/48),3vh); position:relative; background:linear-gradient(135deg, #0F63EE 0%, #1a4fa0 50%, #0b3d8a 100%); color:white; text-align:center;">
+  <!-- 装饰光晕 -->
+  <div style="position:absolute; top:0; right:0; width:60%; height:60%; background:radial-gradient(circle at 80% 20%, rgba(255,255,255,0.12) 0%, transparent 70%); pointer-events:none; z-index:0;"></div>
+  <div style="position:absolute; bottom:0; left:0; width:50%; height:50%; background:radial-gradient(circle at 20% 80%, rgba(255,255,255,0.08) 0%, transparent 60%); pointer-events:none; z-index:0;"></div>
+
+  <!-- 教师形象照 -->
+  <div style="position:relative; z-index:1; width:8em; height:8em; border-radius:50%; border:3px solid rgba(255,255,255,0.6); overflow:hidden; margin-bottom:1.5em; box-shadow:0 0.5em 2em rgba(0,0,0,0.3);">
+    <img src="https://resource.ai-shifu.com/ac186b833d0e417fb02737910b3a5ae0" alt="孙志岗" style="width:100%; height:100%; object-fit:cover;" />
+  </div>
+
+  <!-- 课程名称 -->
+  <div style="position:relative; z-index:1; font-size:3.5em; font-weight:700; letter-spacing:0.05em; text-shadow:0 2px 10px rgba(0,0,0,0.3); margin-bottom:0.3em;">
+    <span style="display:inline-block; background:rgba(255,255,255,0.15); padding:0.1em 0.5em; border-radius:0.2em;">跟 AI 学 AI 通识</span>
+  </div>
+
+  <!-- 讲师姓名 -->
+  <div style="position:relative; z-index:1; font-size:2em; font-weight:600; margin-bottom:0.8em; opacity:0.9;">
+    孙志岗
+  </div>
+
+  <!-- 分隔线 -->
+  <div style="position:relative; z-index:1; width:4em; height:2px; background:rgba(255,255,255,0.5); margin-bottom:0.8em;"></div>
+
+  <!-- 个人目标 -->
+  <div style="position:relative; z-index:1; font-size:1.5em; font-weight:500; max-width:80%; line-height:1.5; background:rgba(255,255,255,0.1); padding:0.5em 1.2em; border-radius:0.5em; backdrop-filter:blur(4px);">
+    🎯 帮助 100 万人顺利走进 AGI 时代
+  </div>
+
+  <!-- 专属讲课 -->
+  <div style="position:relative; z-index:1; margin-top:1.2em; font-size:1em; opacity:0.8; display:flex; align-items:center; gap:0.5em;">
+    <span>🎓</span>
+    <span>为你一个人，专门开讲</span>
   </div>
 </div>
 <style>
-  #sandbox-regression-root[data-script-ready="true"] #sandbox-regression-script-status {
-    font-weight: 700;
-  }
+*,*::before,*::after{box-sizing:border-box;overflow-wrap:break-word;word-wrap:break-word}
 </style>
-<script>
-  const root = document.getElementById("sandbox-regression-root");
-  const status = document.getElementById("sandbox-regression-script-status");
-  if (root && status) {
-    root.dataset.scriptReady = "true";
-    status.textContent = "Script ready";
-  }
-</script>`;
+`;
 
 const REGRESSION_ELEMENT: Element = {
   sequence_number: 1,
